@@ -1,1 +1,309 @@
-placeholder
+<title>Crosfields Parent Digest</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column — intro, example digest card, sign-up form, then the composed message. */
+:root{
+  --bg:#EEF2EE; --surface:#FFFFFF; --ink:#18241F; --muted:#56655E; --line:#D3DCD5;
+  --accent:#2F6B4F; --accent-ink:#FFFFFF; --amber:#A86C0E; --amber-bg:#FBF0DA; --field:#F8FAF8;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111916; --surface:#19231F; --ink:#E6EEE9; --muted:#9DB0A6; --line:#2C3A34;
+  --accent:#6FC19A; --accent-ink:#0D1A14; --amber:#E8B25A; --amber-bg:#2E2414; --field:#141D19; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111916; --surface:#19231F; --ink:#E6EEE9; --muted:#9DB0A6; --line:#2C3A34;
+  --accent:#6FC19A; --accent-ink:#0D1A14; --amber:#E8B25A; --amber-bg:#2E2414; --field:#141D19; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font:17px/1.55 var(--body)}
+.wrap{max-width:640px;margin:0 auto;padding-block:32px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:28px}
+h1,h2{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2rem,7vw,2.75rem);letter-spacing:-.01em}
+h2{font-size:1.35rem}
+p{margin:0}
+.lede{color:var(--muted);max-width:56ch}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.intro{display:flex;flex-direction:column;gap:12px}
+.note{font-size:.9rem;color:var(--muted)}
+
+/* Example digest */
+.digest{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.digest-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding:12px 16px;border-bottom:1px solid var(--line)}
+.digest-head strong{font-family:var(--display);font-size:1.05rem}
+.tag{font:500 .7rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:4px;
+  background:var(--amber-bg);color:var(--amber)}
+.digest-body{padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.action{background:var(--amber-bg);color:var(--ink);border-radius:6px;padding:8px 12px;font-weight:600;font-size:.95rem}
+.kid h3{margin:0 0 4px;font:600 .95rem/1.3 var(--body)}
+.ev{display:grid;grid-template-columns:5.5rem 1fr;gap:8px;font-size:.95rem}
+.ev time{font:400 .85rem/1.6 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.ev span{min-width:0}
+
+/* How it works */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:2rem 1fr;gap:10px;align-items:start;counter-increment:s}
+.steps li::before{content:counter(s);font:500 .85rem/2rem var(--mono);text-align:center;width:2rem;height:2rem;
+  border-radius:50%;border:1px solid var(--line);color:var(--accent)}
+.steps li span{padding-top:4px;min-width:0}
+
+/* Form */
+form{display:flex;flex-direction:column;gap:20px}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+legend{font:600 .8rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:5px;font-weight:600;font-size:.95rem;min-width:0}
+label small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=email],input[type=url],select{font:inherit;font-weight:400;color:var(--ink);background:var(--field);
+  border:1px solid var(--line);border-radius:6px;padding:10px 12px;width:100%;box-sizing:border-box;min-width:0}
+input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.child{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.child-top{display:flex;justify-content:space-between;align-items:center}
+.child-top strong{font-family:var(--display)}
+details{font-size:.9rem;color:var(--muted)}
+summary{cursor:pointer;color:var(--accent);font-weight:600}
+details p{margin-top:6px}
+
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.choices{grid-template-columns:1fr}}
+.choice{position:relative;display:block;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px 12px 40px;cursor:pointer;font-weight:600}
+.choice input{position:absolute;left:14px;top:15px;margin:0;accent-color:var(--accent)}
+.choice small{display:block;font-weight:400;color:var(--muted)}
+.choice:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.choice.off{opacity:.6;cursor:not-allowed}
+.check{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400}
+.check input{margin-top:4px;accent-color:var(--accent)}
+
+button{font:600 1rem/1 var(--body);border-radius:8px;padding:12px 18px;cursor:pointer;border:1px solid transparent}
+.primary{background:var(--accent);color:var(--accent-ink)}
+.ghost{background:transparent;color:var(--accent);border-color:var(--line)}
+.link{background:none;border:0;padding:4px 0;color:var(--muted);font-weight:600;font-size:.9rem;text-decoration:underline}
+.error{color:#B3261E;font-size:.95rem}
+:root[data-theme="dark"] .error{color:#F2A49C}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .error{color:#F2A49C}}
+
+/* Result */
+.result{background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.copyline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.copyline code{font:500 .95rem/1.4 var(--mono);background:var(--field);border:1px solid var(--line);border-radius:6px;padding:8px 10px;
+  user-select:all;word-break:break-all;flex:1 1 220px;min-width:0}
+.copyline .label{font:600 .75rem/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);flex-basis:100%}
+pre{margin:0;font:400 .88rem/1.55 var(--mono);background:var(--field);border:1px solid var(--line);border-radius:6px;padding:12px;
+  white-space:pre-wrap;word-break:break-word;user-select:all}
+.status{font-size:.9rem;color:var(--accent);font-weight:600;min-height:1.2em}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion: no-preference){.result{animation:in .25s ease-out}@keyframes in{from{transform:translateY(6px)}to{transform:none}}}
+</style>
+
+<main class="wrap">
+  <header class="intro">
+    <span class="eyebrow">For Crosfields families</span>
+    <h1>Crosfields Parent Digest</h1>
+    <p class="lede">One short email with your child's school events: fixtures, music lessons, clubs and anything to pack. Every evening for the next day, or once a week on Sunday.</p>
+  </header>
+
+  <section class="digest" aria-label="Example digest">
+    <div class="digest-head"><strong>Tomorrow at Crosfields, Fri 6 Nov</strong><span class="tag">Example</span></div>
+    <div class="digest-body">
+      <div class="action">Pack: bassoon (Child A) · football kit, away fixture (Child B)</div>
+      <div class="kid"><h3>Child A · Year 4</h3>
+        <div class="ev"><time>12:30</time><span>Bassoon lesson, Music School Room 5</span></div>
+        <div class="ev"><time>16:30</time><span>Futsal (Y4–Y6), Sports Hall</span></div>
+      </div>
+      <div class="kid"><h3>Child B · Year 5</h3>
+        <div class="ev"><time>14:30</time><span>Football: U10A, away. Check pickup time</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro" aria-labelledby="how">
+    <h2 id="how">How sign-up works</h2>
+    <ol class="steps">
+      <li><span>Fill in the form below.</span></li>
+      <li><span>Copy the message it makes and email it to the digest address from your own email.</span></li>
+      <li><span>You get a confirmation reply, then your first digest at 6pm.</span></li>
+    </ol>
+  </section>
+
+  <form id="f" novalidate>
+    <fieldset>
+      <legend>You</legend>
+      <div class="row">
+        <label for="pname">Your name<input id="pname" type="text" autocomplete="name" required></label>
+        <label for="pemail">Email for the digest<input id="pemail" type="email" autocomplete="email" required></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Children</legend>
+      <div id="kids" style="display:flex;flex-direction:column;gap:12px"></div>
+      <div><button type="button" class="ghost" id="addKid">Add another child</button></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>How often</legend>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="freq" id="freq-daily" value="Daily" checked>Daily<small>6pm, for the next day</small></label>
+        <label class="choice"><input type="radio" name="freq" id="freq-weekly" value="Weekly">Weekly<small>Sunday 6pm, the week ahead</small></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Send it by</legend>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="chan" id="chan-email" value="Email" checked>Email<small>To the address above</small></label>
+        <label class="choice off"><input type="radio" name="chan" id="chan-wa" value="WhatsApp" disabled>WhatsApp<small>Coming soon</small></label>
+      </div>
+    </fieldset>
+
+    <label class="check" for="consent"><input id="consent" type="checkbox">I'm happy for this parent-run service to keep my email and my children's names, years and classes to send me the digest. I can reply STOP at any time.</label>
+
+    <p class="error" id="err" role="alert" hidden></p>
+    <div><button type="submit" class="primary">Make my sign-up message</button></div>
+  </form>
+
+  <section class="result" id="result" hidden aria-live="polite">
+    <h2>Now send this email</h2>
+    <p>Send it from <strong id="fromAddr"></strong> so the digest knows where to reply.</p>
+    <div class="copyline"><span class="label">To</span><code id="toAddr">crosfields-digest@agentmail.to</code><button type="button" class="ghost" data-copy="toAddr">Copy</button></div>
+    <div class="copyline"><span class="label">Subject</span><code id="subj">Digest sign-up</code><button type="button" class="ghost" data-copy="subj">Copy</button></div>
+    <div class="copyline"><span class="label">Message</span></div>
+    <pre id="msg"></pre>
+    <div class="btns">
+      <button type="button" class="primary" data-copy="msg">Copy message</button>
+      <a class="ghost" id="mailto" href="#" style="font:600 1rem/1 var(--body);border:1px solid var(--line);border-radius:8px;padding:12px 18px;text-decoration:none;color:var(--accent)">Open in email app</a>
+    </div>
+    <p class="status" id="status"></p>
+    <p class="note">If "Open in email app" does nothing, copy the three parts above into a new email.</p>
+  </section>
+
+  <footer>
+    Run by a Crosfields parent. Not an official school service. To change your details, send a new sign-up from the same email. To stop, email <span style="font-family:var(--mono)">STOP</span> to crosfields-digest@agentmail.to.
+  </footer>
+</main>
+
+<template id="kidTpl">
+  <div class="child">
+    <div class="child-top"><strong class="kid-label">Child</strong><button type="button" class="link rm">Remove</button></div>
+    <div class="row">
+      <label>First name<input type="text" class="k-name" required></label>
+      <label>Year<select class="k-year" required>
+        <option value="">Choose…</option>
+        <option>Nursery</option><option>Reception</option>
+        <option>Year 1</option><option>Year 2</option><option>Year 3</option><option>Year 4</option>
+        <option>Year 5</option><option>Year 6</option><option>Year 7</option><option>Year 8</option>
+        <option>Year 9</option><option>Year 10</option><option>Year 11</option>
+      </select></label>
+    </div>
+    <label>Class or form <small>(optional, e.g. 4H)</small><input type="text" class="k-class"></label>
+    <label>Personal calendar link <small>(optional, makes the digest exact)</small><input type="url" class="k-feed" placeholder="https://calendar.socscms.com/CalendarSyncPupil.ashx?key=…"></label>
+    <details><summary>Where do I find this?</summary>
+      <p>In the school's SOCS parent calendar, look for the option to sync or subscribe to your child's calendar, and copy the link it gives you. Without it, the digest uses year-group events and school emails instead.</p>
+    </details>
+  </div>
+</template>
+
+<script>
+(function(){
+  const kids = document.getElementById('kids');
+  const tpl = document.getElementById('kidTpl');
+  let n = 0;
+  function addKid(){
+    n++;
+    const node = tpl.content.firstElementChild.cloneNode(true);
+    node.querySelectorAll('input,select').forEach(el=>{
+      const cls = el.className.split(' ')[0];
+      el.id = cls + '-' + n;
+      el.closest('label').htmlFor = el.id;
+    });
+    node.querySelector('.rm').addEventListener('click',()=>{ node.remove(); relabel(); });
+    kids.appendChild(node); relabel();
+  }
+  function relabel(){
+    const all = kids.querySelectorAll('.child');
+    all.forEach((c,i)=>{
+      c.querySelector('.kid-label').textContent = 'Child ' + (i+1);
+      c.querySelector('.rm').hidden = all.length === 1;
+    });
+  }
+  document.getElementById('addKid').addEventListener('click', addKid);
+  addKid();
+
+  const err = document.getElementById('err');
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  document.getElementById('f').addEventListener('submit', e=>{
+    e.preventDefault();
+    const name = document.getElementById('pname').value.trim();
+    const email = document.getElementById('pemail').value.trim();
+    const problems = [];
+    if(!name) problems.push('your name');
+    if(!emailRe.test(email)) problems.push('a valid email address');
+    const children = [];
+    kids.querySelectorAll('.child').forEach((c,i)=>{
+      const kn = c.querySelector('.k-name').value.trim();
+      const ky = c.querySelector('.k-year').value;
+      const kc = c.querySelector('.k-class').value.trim();
+      const kf = c.querySelector('.k-feed').value.trim();
+      if(!kn || !ky) problems.push('a first name and year for child ' + (i+1));
+      if(kf && !/^https:\/\/[^\s]+$/.test(kf)) problems.push('a full https link for child ' + (i+1) + "'s calendar (or leave it blank)");
+      children.push({kn,ky,kc,kf});
+    });
+    if(!document.getElementById('consent').checked) problems.push('a tick in the consent box');
+    if(problems.length){
+      err.textContent = 'Please add ' + problems.join(', ') + '.';
+      err.hidden = false; return;
+    }
+    err.hidden = true;
+    const freq = document.querySelector('input[name=freq]:checked').value;
+    const lines = [
+      'DIGEST SIGN-UP',
+      'Parent: ' + name,
+      'Email: ' + email,
+      'Frequency: ' + (freq === 'Daily' ? 'Daily (6pm, next day)' : 'Weekly (Sunday 6pm, week ahead)'),
+      'Send by: Email',
+      ''
+    ];
+    children.forEach((k,i)=>{
+      lines.push('Child ' + (i+1) + ': ' + k.kn);
+      lines.push('  Year: ' + k.ky);
+      lines.push('  Class: ' + (k.kc || 'not given'));
+      lines.push('  Calendar link: ' + (k.kf || 'none'));
+    });
+    lines.push('', 'Consent: yes');
+    const body = lines.join('\n');
+    document.getElementById('msg').textContent = body;
+    document.getElementById('fromAddr').textContent = email;
+    document.getElementById('mailto').href = 'mailto:crosfields-digest@agentmail.to?subject=' +
+      encodeURIComponent('Digest sign-up') + '&body=' + encodeURIComponent(body);
+    document.getElementById('status').textContent = '';
+    const r = document.getElementById('result');
+    r.hidden = false;
+    r.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+  });
+
+  document.querySelectorAll('[data-copy]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const el = document.getElementById(btn.dataset.copy);
+      const text = el.textContent;
+      const status = document.getElementById('status');
+      const fallback = ()=>{
+        const range = document.createRange(); range.selectNodeContents(el);
+        const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+        status.textContent = 'Selected. Use your device’s Copy.';
+      };
+      try{
+        navigator.clipboard.writeText(text).then(()=>{ status.textContent = 'Copied.'; }, fallback);
+      }catch(_){ fallback(); }
+    });
+  });
+})();
+</script>
