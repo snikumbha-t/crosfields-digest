@@ -124,6 +124,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
 @media (min-width:560px){.panel{padding:28px}}
 form .primary{width:100%;padding:16px 20px;font-size:1.05rem}
+.hp{display:none!important}
 [hidden]{display:none!important}
 body{margin:0}
 </style>
@@ -161,8 +162,8 @@ body{margin:0}
     <h2 id="how">How sign-up works</h2>
     <ol class="steps">
       <li><span>Fill in the form below.</span></li>
-      <li><span>Copy the message it makes and email it to the digest address from your own email.</span></li>
-      <li><span>You get a confirmation reply, then your first digest at 6pm.</span></li>
+      <li><span>Tap the button. We email you to confirm your address.</span></li>
+      <li><span>Reply YES to that email, and your first digest arrives at 6pm.</span></li>
     </ol>
   </section>
 
@@ -197,6 +198,7 @@ body{margin:0}
       </div>
     </fieldset>
 
+    <input type="checkbox" name="botcheck" id="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label class="check" for="consent"><input id="consent" type="checkbox">I'm happy for this parent-run service to keep my email and my children's names, years and classes to send me the digest. I can reply STOP at any time.</label>
 
     <p class="error" id="err" role="alert" hidden></p>
@@ -204,22 +206,13 @@ body{margin:0}
   </form>
 
   <section class="result" id="result" hidden aria-live="polite">
-    <h2>One last step: send this email</h2>
-    <p>Send it from <strong id="fromAddr"></strong> so the digest knows where to reply.</p>
-    <div class="copyline"><span class="label">To</span><code id="toAddr">crosfields-digest@agentmail.to</code><button type="button" class="ghost" data-copy="toAddr">Copy</button></div>
-    <div class="copyline"><span class="label">Subject</span><code id="subj">Digest sign-up</code><button type="button" class="ghost" data-copy="subj">Copy</button></div>
-    <div class="copyline"><span class="label">Message</span></div>
-    <pre id="msg"></pre>
-    <div class="btns">
-      <button type="button" class="primary" data-copy="msg">Copy message</button>
-      <a class="ghost" id="mailto" href="#" style="font:600 1rem/1 var(--body);border:1px solid var(--line);border-radius:8px;padding:12px 18px;text-decoration:none;color:var(--accent)">Open in email app</a>
-    </div>
-    <p class="status" id="status"></p>
-    <p class="note">If "Open in email app" does nothing, copy the three parts above into a new email.</p>
+    <h2>You're nearly done</h2>
+    <p>Within the hour we'll email <strong id="fromAddr"></strong> to confirm your address. Reply <strong>YES</strong> to that email and your digest will start.</p>
+    <p class="note">It comes from crosfields-digest@agentmail.to. If you can't see it, check your junk folder.</p>
   </section>
 
   <footer>
-    Run by a Crosfields parent. Not an official school service. To change your details, send a new sign-up from the same email. To stop, email <span style="font-family:var(--mono)">STOP</span> to crosfields-digest@agentmail.to.
+    Run by a Crosfields parent. Not an official school service. To change your details, sign up again with the same email. To stop, email <span style="font-family:var(--mono)">STOP</span> to crosfields-digest@agentmail.to.
   </footer>
 </main>
 
@@ -313,14 +306,30 @@ body{margin:0}
     });
     lines.push('', 'Consent: yes');
     const body = lines.join('\n');
-    document.getElementById('msg').textContent = body;
-    document.getElementById('fromAddr').textContent = email;
-    document.getElementById('mailto').href = 'mailto:crosfields-digest@agentmail.to?subject=' +
-      encodeURIComponent('Digest sign-up') + '&body=' + encodeURIComponent(body);
-    document.getElementById('status').textContent = '';
-    const r = document.getElementById('result');
-    r.hidden = false;
-    r.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+    const btn = document.querySelector('#f button[type=submit]');
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending\u2026';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({
+        access_key: 'a17a9e96-2350-4ea9-9a0c-febfd424a9f2',
+        subject: 'Digest sign-up',
+        from_name: 'Crosfields Parent Digest',
+        name: name, email: email, message: body,
+        botcheck: document.getElementById('botcheck').checked
+      })
+    }).then(res => res.json()).then(res => {
+      if (!res.success) throw new Error(res.message || 'failed');
+      document.getElementById('f').hidden = true;
+      document.getElementById('fromAddr').textContent = email;
+      const box = document.getElementById('result');
+      box.hidden = false;
+      box.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+    }).catch(() => {
+      err.textContent = "Sorry, that didn't go through. Check your connection and try again, or email your details to crosfields-digest@agentmail.to.";
+      err.hidden = false;
+    }).finally(() => { btn.disabled = false; btn.textContent = label; });
   });
 
   document.querySelectorAll('[data-copy]').forEach(btn=>{
