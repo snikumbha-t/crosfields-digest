@@ -194,7 +194,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   <div class="child">
     <div class="child-top"><strong class="kid-label">Child</strong><button type="button" class="link rm">Remove</button></div>
     <div class="row">
-      <label>First name<input type="text" class="k-name" required></label>
+      <label>Child's full name<input type="text" class="k-name" autocomplete="off" required></label>
       <label>Year<select class="k-year" required>
         <option value="">Choose…</option>
         <option>Nursery</option><option>Reception</option>
@@ -253,7 +253,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
       const ky = c.querySelector('.k-year').value;
       const kc = c.querySelector('.k-class').value.trim();
       const kf = c.querySelector('.k-feed').value.trim();
-      if(!kn || !ky) problems.push('a first name and year for child ' + (i+1));
+      if(!kn || !ky) problems.push('a full name and year for child ' + (i+1));
       if(kf && !/^https:\/\/[^\s]+$/.test(kf)) problems.push('a full https link for child ' + (i+1) + "'s calendar (or leave it blank)");
       children.push({kn,ky,kc,kf});
     });
