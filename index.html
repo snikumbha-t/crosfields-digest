@@ -101,14 +101,38 @@ pre{margin:0;font:400 .88rem/1.55 var(--mono);background:var(--field);border:1px
 .btns{display:flex;gap:10px;flex-wrap:wrap}
 footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
 @media (prefers-reduced-motion: no-preference){.result{animation:in .25s ease-out}@keyframes in{from{transform:translateY(6px)}to{transform:none}}}
+
+/* Masthead and panel */
+:root{--head:#1E3F31;--head-ink:#F4F7F5;--head-muted:#C3D6CB}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--head:#132620;--head-ink:#E6EEE9;--head-muted:#9DB0A6}}
+:root[data-theme="dark"]{--head:#132620;--head-ink:#E6EEE9;--head-muted:#9DB0A6}
+.masthead{background:var(--head);color:var(--head-ink)}
+.masthead-inner{max-width:640px;margin:0 auto;padding-block:28px 36px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{flex:none}
+.brand-name{font:700 1rem/1.2 var(--display)}
+.brand-sub{font:500 .7rem/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--head-muted)}
+.masthead h1{color:var(--head-ink)}
+.masthead .lede{color:var(--head-muted)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+@media (min-width:560px){.panel{padding:28px}}
+form .primary{width:100%;padding:16px 20px;font-size:1.05rem}
 </style>
 
-<main class="wrap">
-  <header class="intro">
-    <span class="eyebrow">For Crosfields families</span>
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 14h20v13H10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 14l10 7 10-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <div><div class="brand-name">Parent Digest</div><div class="brand-sub">For Crosfields families · Parent-run</div></div>
+    </div>
     <h1>Crosfields Parent Digest</h1>
     <p class="lede">One short email with your child's school events: fixtures, music lessons, clubs and anything to pack. Every evening for the next day, or once a week on Sunday.</p>
-  </header>
+  </div>
+</div>
+
+<main class="wrap">
 
   <section class="digest" aria-label="Example digest">
     <div class="digest-head"><strong>Tomorrow at Crosfields, Fri 6 Nov</strong><span class="tag">Example</span></div>
@@ -133,7 +157,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
     </ol>
   </section>
 
-  <form id="f" novalidate>
+  <form id="f" class="panel" novalidate>
     <fieldset>
       <legend>You</legend>
       <div class="row">
@@ -167,11 +191,11 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
     <label class="check" for="consent"><input id="consent" type="checkbox">I'm happy for this parent-run service to keep my email and my children's names, years and classes to send me the digest. I can reply STOP at any time.</label>
 
     <p class="error" id="err" role="alert" hidden></p>
-    <div><button type="submit" class="primary">Make my sign-up message</button></div>
+    <div><button type="submit" class="primary">Click here to accept your email digest</button></div>
   </form>
 
   <section class="result" id="result" hidden aria-live="polite">
-    <h2>Now send this email</h2>
+    <h2>One last step: send this email</h2>
     <p>Send it from <strong id="fromAddr"></strong> so the digest knows where to reply.</p>
     <div class="copyline"><span class="label">To</span><code id="toAddr">crosfields-digest@agentmail.to</code><button type="button" class="ghost" data-copy="toAddr">Copy</button></div>
     <div class="copyline"><span class="label">Subject</span><code id="subj">Digest sign-up</code><button type="button" class="ghost" data-copy="subj">Copy</button></div>
