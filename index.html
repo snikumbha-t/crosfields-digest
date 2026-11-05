@@ -6,18 +6,18 @@
 <style>
 /* Layout: one narrow column — intro, example digest card, sign-up form, then the composed message. */
 :root{
-  --bg:#EEF2EE; --surface:#FFFFFF; --ink:#18241F; --muted:#56655E; --line:#D3DCD5;
-  --accent:#2F6B4F; --accent-ink:#FFFFFF; --amber:#A86C0E; --amber-bg:#FBF0DA; --field:#F8FAF8;
+  --bg:#F9F8F4; --surface:#FFFFFF; --ink:#162335; --muted:#55607A; --line:#DEDCCF;
+  --accent:#162335; --accent-ink:#FFFFFF; --amber:#162335; --amber-bg:#F6E263; --field:#F6F5EE;
   --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
   --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#111916; --surface:#19231F; --ink:#E6EEE9; --muted:#9DB0A6; --line:#2C3A34;
-  --accent:#6FC19A; --accent-ink:#0D1A14; --amber:#E8B25A; --amber-bg:#2E2414; --field:#141D19; color-scheme:dark}}
+  --bg:#0F1826; --surface:#162335; --ink:#ECEEF5; --muted:#A3AACB; --line:#2A3A55;
+  --accent:#F6E263; --accent-ink:#162335; --amber:#F6E263; --amber-bg:#3A3518; --field:#111C2C; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#111916; --surface:#19231F; --ink:#E6EEE9; --muted:#9DB0A6; --line:#2C3A34;
-  --accent:#6FC19A; --accent-ink:#0D1A14; --amber:#E8B25A; --amber-bg:#2E2414; --field:#141D19; color-scheme:dark}
+  --bg:#0F1826; --surface:#162335; --ink:#ECEEF5; --muted:#A3AACB; --line:#2A3A55;
+  --accent:#F6E263; --accent-ink:#162335; --amber:#F6E263; --amber-bg:#3A3518; --field:#111C2C; color-scheme:dark}
 
 body{background:var(--bg);color:var(--ink);font:17px/1.55 var(--body)}
 .wrap{max-width:640px;margin:0 auto;padding-block:32px 64px;
@@ -103,15 +103,15 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 @media (prefers-reduced-motion: no-preference){.result{animation:in .25s ease-out}@keyframes in{from{transform:translateY(6px)}to{transform:none}}}
 
 /* Masthead and panel */
-:root{--head:#1E3F31;--head-ink:#F4F7F5;--head-muted:#C3D6CB}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--head:#132620;--head-ink:#E6EEE9;--head-muted:#9DB0A6}}
-:root[data-theme="dark"]{--head:#132620;--head-ink:#E6EEE9;--head-muted:#9DB0A6}
+:root{--head:#162335;--head-ink:#FFFFFF;--head-muted:#C9CEE8;--head-mark:#F6E263}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--head:#0B1320;--head-ink:#ECEEF5;--head-muted:#A3AACB}}
+:root[data-theme="dark"]{--head:#0B1320;--head-ink:#ECEEF5;--head-muted:#A3AACB}
 .masthead{background:var(--head);color:var(--head-ink)}
 .masthead-inner{max-width:640px;margin:0 auto;padding-block:28px 36px;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
   display:flex;flex-direction:column;gap:16px}
 .brand{display:flex;align-items:center;gap:12px}
-.brand svg{flex:none}
+.brand svg{flex:none;color:var(--head-mark)}
 .brand-name{font:700 1rem/1.2 var(--display)}
 .brand-sub{font:500 .7rem/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--head-muted)}
 .masthead h1{color:var(--head-ink)}
